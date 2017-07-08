@@ -6,14 +6,6 @@ students = [
 
 ]
 
-
-
-def display_students(arr):
-	for student in students:
-		print student["first_name"], student["last_name"]
-
-display_students(students)
-
 users = {
 	'Students': [
 		{"first_name": "Michael", "last_name": "Jordan"},
@@ -26,3 +18,24 @@ users = {
 		{'first_name': 'Martin', 'last_name': 'Puryear'}
 	]
 }
+
+def display_students(arr):
+	for student in students:
+		print student["first_name"], student["last_name"]
+
+
+
+
+def display_all(users):
+	for x in users:
+		count = 0
+		print x
+		for people in users[x]:
+			count +=1
+			first_name = people['first_name'].upper()
+			last_name = people['last_name'].upper()
+			length = len(first_name) + len(last_name)
+			print "{} - {} {} - {}".format(count, first_name, last_name, length)
+
+display_students(students)
+display_all(users)
