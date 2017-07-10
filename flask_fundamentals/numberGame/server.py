@@ -1,4 +1,4 @@
-from flask import Flask render_template request redirect session 
+from flask import Flask, render_template, request, redirect, session 
 import random
 
 app = Flask(__name__)
@@ -12,6 +12,15 @@ def index():
 def number():
 	num = random.randrange(0,101)
 	session['guess'] = num
-	status['']
+	status = ''
 	if request.POST > num:
-		return redirect('/', )
+		status = 'Too high'
+		return redirect('/', status)
+	elif request.POST < num:
+		status = 'Too Low'
+		return redirect('/', status)
+	else:
+		status = 'CORRECT'
+		return redirect('/', status)
+
+app.run(debug=True)
