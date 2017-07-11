@@ -5,8 +5,11 @@
         <title>Untitled</title>
     </head>
     <body>
-      <h3>Atempt number: {{request.session.counter}}</h3>
+      <h3>Atempt number: {{ request.session.counter }}</h3>
       <h1>Magical Word Maker For Science</h1> 
-      <h2>Word: {{word}}</h2>
+      <h2>Word: {{ randomWord}}</h2>
+      <form action="/generate" method="get">
+      	<input type="submit" value="generate word">
+      </form>
     </body>
 </html>
