@@ -10,7 +10,14 @@ def new(request):
 	return HttpResponse(holder)
 
 def create(request):
-	return redirect('/blogs')
+	if request.method == 'POST':
+		print request.POST
+		print request.POST['name']
+		print request.POST['desc']
+		request.session['name'] = "test"
+		return redirect("/")
+	else:
+		return redirect("/")
 
 def show(request):
 	placeholder = 'placeholder to display blog {{number}}'
