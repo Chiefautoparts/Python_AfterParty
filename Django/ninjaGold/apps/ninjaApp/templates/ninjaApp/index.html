@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Untitled</title>
+    </head>
+    <body>
+      <h4>Your Gold: <!-- request.session.gold--></h4> 
+      <section class="moenys">
+      	<article>
+      		<form action="/proces_money" method="post">Farm
+      			<p>(earns 10 - 20 golds)</p>
+      			<input type="submit" name="submitFarm" value="Find Gold">
+      		</form>
+      	</article>
+        <br>
+      	<article>
+      		<form action="/proces_money" method="post">Cave
+      			<p>(earns 5 - 10 golds)</p>
+      			<input type="submit" name="submitCave" value="Find Gold">
+      		</form>
+      	</article>
+        <br>
+      	<article>
+      		<form action="/proces_money" method="post">House
+      			<p>(earns 2 - 5 golds)</p>
+      			<input type="submit" name="submitHouse" value="Find Gold">
+      		</form>
+      	</article>
+        <br>
+      	<article>
+      		<form action="/proces_money" method="post">Casino
+      			<p>(earns/takes 0-50 golds)</p>
+      			<input type="submit" name="submitCasino" value="Find Gold">
+      		</form>
+      	</article>
+      </section>
+      <section>
+        <h3>Activities:</h3>
+
+      </section>
+    </body>
+</html>
