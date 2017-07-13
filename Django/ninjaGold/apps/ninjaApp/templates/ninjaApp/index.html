@@ -5,39 +5,35 @@
         <title>Untitled</title>
     </head>
     <body>
-      <h4>Your Gold: <!-- request.session.gold--></h4> 
-      <section class="moenys">
-      	<article>
-      		<form action="/proces_money" method="post">Farm
-      			<p>(earns 10 - 20 golds)</p>
-      			<input type="submit" name="submitFarm" value="Find Gold">
-      		</form>
-      	</article>
-        <br>
-      	<article>
-      		<form action="/proces_money" method="post">Cave
-      			<p>(earns 5 - 10 golds)</p>
-      			<input type="submit" name="submitCave" value="Find Gold">
-      		</form>
-      	</article>
-        <br>
-      	<article>
-      		<form action="/proces_money" method="post">House
-      			<p>(earns 2 - 5 golds)</p>
-      			<input type="submit" name="submitHouse" value="Find Gold">
-      		</form>
-      	</article>
-        <br>
-      	<article>
-      		<form action="/proces_money" method="post">Casino
-      			<p>(earns/takes 0-50 golds)</p>
-      			<input type="submit" name="submitCasino" value="Find Gold">
-      		</form>
-      	</article>
+      <h3 id="currentGold">Your Gold: {{request.session.currentGold}}</h3>
+      <section id="main">
+        <h2>Farm</h2>
+        <form action="/process_money" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="location" value="farm">
+          <input type="submit" value="Find Gold">
+        </form>
+        <h2>Cave</h2>
+        <form action="/process_money" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="location" value="cave">
+          <input type="submit" value="Find Gold">
+        </form>
+        <h2>House</h2>
+        <form action="/process_money" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="location" value="house">
+          <input type="submit" value="Find Gold">
+        </form>
+        <h2>Casino</h2>
+        <form action="/process_money" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="location" value="casino">
+          <input type="submit" value="Find Gold">
+        </form>
       </section>
-      <section>
-        <h3>Activities:</h3>
-
-      </section>
+      <footer>
+        {{request.session.activities}}
+      </footer>
     </body>
 </html>
