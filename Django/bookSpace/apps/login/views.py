@@ -5,6 +5,7 @@ def index(request):
 	return render(request, 'login/index.html')
 
 def register(request):
+	print '*'*50 + 'register'
 	if request.method == 'POST':
 		request.session['username'] = request.POST['username']
 		request.session['email'] = request.POST['email']
@@ -18,6 +19,7 @@ def register(request):
 		return redirect('/')
 
 def home(request):
+	print '*'*50 + 'home'
 	return render(request, 'login/home.html')
 
 # Create your views here.
