@@ -9,8 +9,7 @@ class Dojo(models.Model):
 	state = models.CharField(max_length=2)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
-
-	def __ 
+       
 
 class Ninja(models.Model):
 	dojo = models.ForeignKey(Dojo, related_name='ninjas', default="")
