@@ -2,19 +2,37 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Untitled</title>
+        <title>Fake Book</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
     </head>
     <body>
-    <h1>Login</h1>
-      <form action="/register" method="post">
+    <h1>Welcome to Fake Book</h1>
+    <br>
+    <br>
+    <h3>Register</h3>
+    <br>
+      <form id="log" action="/register" method="post">
           {% csrf_token %}
-       	Username: <input type="text" name="username" value=""/><br>
-       	Password: <input type="password" name="password" value=""/><br>
-       	Email: <input type="text" name="email"><br>
-       	Age: <input type="text" name="age"><br>
-       	First Name: <input type="text" name="fName"><br>
-       	Last Name: <input type="text" name="lName"><br>
-       	<input type="submit" name="submit" value="submit"/>
-       </form> 
+       	Username: <input id="input" type="text" name="username" value=""/>
+        <br>
+        <br>
+       	Password: <input id="input" type="password" name="password" value=""/>
+        <br>
+        <br>
+       	Email: <input id="input" type="text" name="email">
+        <br>
+        <br>
+       	Age: <input id="input" type="text" name="age">
+        <br>
+        <br>
+       	First Name: <input id="input" type="text" name="fName">
+        <br>
+        <br>
+       	Last Name: <input id="input" type="text" name="lName">
+        <br>
+        <br>
+       	<input id="input" type="submit" name="submit" value="submit"/>
+       </form>
     </body>
 </html>

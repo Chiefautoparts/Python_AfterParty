@@ -1,0 +1,29 @@
+body {
+	background-color: #010097;
+	color: #FFFFFF;
+	margin: auto;
+	padding: 10px;
+}
+
+h1 {
+	text-align: center;
+	margin:auto;
+	font-size: 5em;
+	text-shadow: -5px 5px 2px #000000;
+	text-decoration: underline;
+}
+
+h3 { 
+	text-align: center;
+	margin:auto;
+}
+
+#log {
+	margin: auto;
+	text-align: center;
+	padding: 10px;
+}
+
+#input {
+	box-shadow: inset 2px 2px 0px #000000;
+}
