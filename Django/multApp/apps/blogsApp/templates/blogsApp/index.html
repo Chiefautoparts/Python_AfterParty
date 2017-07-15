@@ -5,7 +5,7 @@
         <title>Untitled</title>
     </head>
     <body>
-      <form action="/blogsApp/create" method="post">
+      <form action="{%url 'blog_create'%}" method="post">
       	{% csrf_token %}
       	Blog Name: <input type="text" name="name" placeholder="blog name">
       	Description: <textarea name="desc" placeholder="description"></textarea>

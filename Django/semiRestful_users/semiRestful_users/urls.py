@@ -1,4 +1,4 @@
-"""multApp URL Configuration
+"""semiRestful_users URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -18,7 +18,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('apps.blogsApp.urls', namespace='blog')),
-    url(r'^', include('apps.surveyApp.urls', namespace='survey')),
-    url(r'^', include('apps.usersApp.urls', namespace='user')),
-    ]
+    url(r'^', include('apps.userApp.urls'))
+]
