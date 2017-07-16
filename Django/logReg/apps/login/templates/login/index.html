@@ -5,14 +5,29 @@
         <title>Untitled</title>
     </head>
     <body>
+    <h1>Register for some dumb shit</h1>
       <form action="/create" method="post">
       	{% csrf_token %}
-       	First Name:<input type="text" name="first_name" value=""/><br>
-       	Last Name<input type="text" name="last_name" value=""/><br>
-       	Email<input type="text" name="email" value=""/><br>
-       	Password<input type="password" name="password" value=""/><br>
-       	Confirm Password<input type="password" name="confirm_password" value=""/><br>
-       	<input type="submit" name="submit" value="submit"/>
-       </form> 
+       	First Name: <input type="text" name="first_name" value=""/><br>
+        <br>
+       	Last Name: <input type="text" name="last_name" value=""/><br>
+        <br>
+       	Email: <input type="text" name="email" value=""/><br>
+        <br>
+       	Password: <input type="password" name="password" value=""/><br>
+        <br>
+       	Confirm Password: <input type="password" name="confirm_password" value=""/><br>
+        <br>
+       	<input type="submit" name="submit" value="register"/>
+       </form>
+       <h1>Login to some dumb shit</h1>
+       <form action="/login" method="post">
+          {% csrf_token $}
+          Email: <input type="text" name="email" value=""/><br>
+          <br>
+          Password: <input type="password" name="password" value=""/><br>
+          <br>
+          <input type="submit" name="submit" value="login"/>
+        </form> 
     </body>
 </html>
