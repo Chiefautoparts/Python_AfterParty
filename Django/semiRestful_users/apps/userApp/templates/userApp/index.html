@@ -5,6 +5,34 @@
         <title>Untitled</title>
     </head>
     <body>
+    	<table>
+    		<thead>
+    			<tr>
+    				<th data-field="id">Id</th>
+    				<th data-field="name">Full Name</th>
+    				<th data-field="email">email</th>
+    				<th data-field="created_at">Created_at</th>
+    				<th data-field="actions">Actions</th>
+    			</tr>
+    		</thead>
+    	
+    		<tbody>
+    			<tr>
+    			{% for id in request.session.id %}
+    				<td>{{request.session.id}}</td>
+    				<td>{{request.session.fullName}}</td>
+    				<td>{{request.session.email}}</td>
+    				<td>{{request.session.created_at}}</td>
+    			{% endfor %}
+    				<td><a href="userApp/<id>">Show</a>  <a href="userApp/<id>/edit">Edit</a>  <a href="userApp/<id>/destroy">Delete</a></td>
+    			</tr>
+    			<tr>
+    				<td></td>
+    				<td></td>
+    				<td></td>
+    			</tr>
+    		</tbody>
+    	</table>
       <a href="userApp/new">Add New User</a>
     </body>
 </html>
