@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Untitled</title>
+    </head>
+    <body>
+      <h1>stuff n things</h1>
+      <h3>Register for Books 'n stuff</h3>
+      <form action="register" method="post">
+      	{% csrf_token %}
+      	Name: <input type="text" name="name" value=""/>
+      	<br>
+      	Username: <input type="text" name="alias" value=""/>
+      	<br>
+      	Email: <input type="text" name="emial" value=""/>
+      	<br>
+      	Password: <input type="password" name="password" />
+      	<br>
+      	Confirm Password: <input type="password" name="confirm_password"/>
+      	<br>
+      	<input type="submit" name="submit" value="Register"/>
+      </form>
+      <h3>Login to Books 'n things</h3>
+      <form action="login">
+      	Email: <input type="text" name="email"/>
+      	<br>
+      	Password: <input type="password" name="password"/>
+      	<br>
+      	<input type="submit" name="submit" value="Login">
+      </form>
+    </body>
+</html>
