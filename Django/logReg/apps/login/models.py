@@ -53,7 +53,7 @@ class UserManager(models.Manager):
 			logged['errors'].append('No Account found with the information provided. GO REGISTER')
 
 		if user[0]:
-			if user[0].password != bcryp.hashpw(postData['password'].encode(), user[0].password.encode()):
+			if user[0].password != bcrypt.hashpw(postData['password'].encode(), user[0].password.encode()):
 				logged['status'] = False
 				logged['errors'].append('Password is WRONG')
 			else:
