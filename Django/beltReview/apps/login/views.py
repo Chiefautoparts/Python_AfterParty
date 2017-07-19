@@ -32,8 +32,8 @@ def register(request):
 	return redirect('/showUser')
 
 def showUser(requests):
-	user = User.objects.get(id=request.session['id'])
+	user = User.objects.filter(id=request.session['id'])
 	context = {
 		'user': user
 	}
-	return render(request, 'login/user<id>.html', context)
+	return render(request, 'login/user/<id>.html', context)
