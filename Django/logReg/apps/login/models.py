@@ -13,9 +13,9 @@ class UserManager(models.Manager):
 		if not postData['last_name'] or len(postData['last_name']) < 2:
 			logged['status'] = False
 			logged['errors'].append('Last name must be longer than 2 characters')
-		# if postData['email'] != re.match(r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-.]+$'):
-		# 	logged['logged'] = False
-		# 	logged['errors'].append('Invalid email')
+		if not postData['email'] or re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", postData['email']):
+			logged['logged'] = False
+			logged['errors'].append('Invalid email')
 		if not postData['password'] or len(postData['password']) < 8:
 			logged['status'] = False
 			logged['errors'].append('Password must be at least 8 characters long')
@@ -32,12 +32,12 @@ class UserManager(models.Manager):
 			logged['errors'].append('Failed to register, please try again and DO NOT mess it up this time')
 		
 		if logged['status']:
-			password = bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt())
+			
 			user = User.objects.create(
 				first_name = postData['first_name'],
 				last_name = postData['last_name'],
 				email = postData['email'],
-				password = password
+				password = (bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt()))
 				)
 			
 			logged['user'] = user
