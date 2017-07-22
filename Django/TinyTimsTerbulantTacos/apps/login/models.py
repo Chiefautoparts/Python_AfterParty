@@ -15,13 +15,13 @@ class UserManager(models.Manager):
 		if not postData['username'] or len(postData['username']) < 3:
 			status['valid']=False
 			status['errors'].append('That username is invalid for TWO reasons. 1. It Sucks. 2. It\'s not long enough.')
-		if not postData['email'] or re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", postData['email']):
+		if not postData['email'] or re.match('r(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)', postData['email']):
 			status['valid']=False
 			status['errors'].append('FAKE EMAIL!!!!!')
 		if not postData['age'] or postData['age'] < 15:
 			status['valid']=False
 			status['errors'].append('You are just a kid get out of here')
-		if not postData['pasword'] or len(postData['password']) < 6:
+		if not postData['password'] or len(postData['password']) < 6:
 			status['valid']=False
 			status['errors'].append('Ok John Podesta how about you pick a better password than "password"')
 		if postData['confirmPassword'] != postData['password']:
@@ -50,7 +50,7 @@ class UserManager(models.Manager):
 
 	def loginValidate(self, postData):
 		status = {'valid':True, 'errors':[], 'user':None}
-		user = User.objects.fitler(username=psotData['username'])
+		user = User.objects.filter(username=postData['username'])
 
 		try:
 			user[0]

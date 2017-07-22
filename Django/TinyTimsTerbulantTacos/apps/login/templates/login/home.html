@@ -6,6 +6,13 @@
     </head>
     <body>
       <h1>This My Website, Now Go On Get</h1> 
+      {% if messages %}
+      <ul id="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {%endif%}
       <form action="/register" method="post">
       {%csrf_token%}
       <h2>Register</h2><br>
