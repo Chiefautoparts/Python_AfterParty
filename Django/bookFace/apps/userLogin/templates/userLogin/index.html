@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>BookFace</title>
+    </head>
+    <body>
+    {% if messages %}
+    	{% for message in messages %}
+    		<p>{{message}}</p>
+    	{% endfor %}
+    {% endif %}
+    <h2>Register New User</h2>
+      <form action="register" method="post">
+      	{% csrf_token %}
+      		<label for="">Name: </label><br>
+       		<input type="text" name="name"/><br>
+       		<label for="">Alias: </label><br>
+       		<input type="text" name="alias"/><br>
+       		<label for="">Email: </label><br>
+       		<input type="text" name="emial"/><br>
+       		<label for="">Password: </label><br>
+       		<input type="password" name="password"/><br>
+       		<label for="">Confirm Password: </label><br>
+       		<input type="password" name="confirmPassword"/><br>
+       		<input type="submit" name="submit" value="Register"/>
+       	</form>
+       	<h2>Already a Registered? Login in Below</h2>
+       	<form action="login" method="post">
+       	{% csrf_token %}
+       		<label for="">Alias: </label><br>
+       	 	<input type="text" name="alias" value=""/><br>
+       	 	<label for="">Password: </label><br>
+       	 	<input type="text" name="password" value=""/><br>
+       	 	<input type="submit" name="submit" value="Login"/>
+       	</form> 	
+    </body>
+</html>
