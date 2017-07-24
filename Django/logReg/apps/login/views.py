@@ -15,7 +15,10 @@ def register(request):
 			messages.error(request, error)
 	else:
 		messages.success(request, 'User createed,  login please')
-	
+	request.session['id'] = status['user'].id
+	# print request.post['user.first_name']*50
+	# print request.post['user.email']*50
+	# print request.post['user.password']*50
 	return redirect('auth:index')
 
 def login(request):

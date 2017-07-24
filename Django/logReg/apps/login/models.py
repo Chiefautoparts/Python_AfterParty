@@ -33,6 +33,7 @@ class UserManager(models.Manager):
 					email = postData['email'],
 					password = (bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt()))
 					)
+				print user
 				user.save()
 				status['user'] = user
 			except IntegrityError as e:
@@ -45,20 +46,37 @@ class UserManager(models.Manager):
 
 	def loginValidation(self, postData):
 		status = {'valid':True, 'errors': [], 'user': None}
-		
-		try:
-			user = User.objects.get(email=postData['email'])
-			if user.password == bcrypt.haspw(postData['password'].encode, user.password.encode()):
-				pass
-			else:
-				raise Exception()
-		except Exception as e:
-				status['valid'] = False
-				status['errors'].append('Incorrect username or password')
+		user = User.objects.filter(email=postData['email'])
+		try: 
+			user[0]
+		except IndexError:
+			status['valid']=False
+			status['errors'].append('Your login has failed')
 
-		if status['valid']:
-			status['user'] = user
-		return status 
+		if user[0]:
+			if user[0].password != bcrypt.hashpw(postData['password'].encode(), user[0].password.encode()):
+				status['valid']=False
+				status['errors'].append('login failed')
+			else:
+				status['user'] = user[0].id
+		else:
+			status['valid']=False
+		return status
+
+
+
+
+
+		# user = User.objects.get(email=postData['email'])
+		# if user.password == bcrypt.haspw(postData['password'].encode, user.password.encode()):
+		# 	return status
+		# else:
+		# 	status['valid'] = False
+		# 	status['errors'].append('Incorrect username or password')
+
+		# if status['valid']:
+		# 	status['user'] = user
+		# return status 
 
 		# except IndexError:
 		# 	status['valid'] = False
