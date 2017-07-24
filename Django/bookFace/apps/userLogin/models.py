@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
-from django.db import models
+from django.db import models, IntegrityError
+import bcrypt
+import re
 
 # Create your models here.
 class UserManager(models.Manager):
@@ -12,7 +14,7 @@ class UserManager(models.Manager):
 		if not postData['alias']:
 			status['valid']=False
 			status['errors'].append('Please proviide an online alias for yout account')
-		if not postData['email'] or not re.match(r'(^[a-zA_Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)', postData['email']):
+		if not postData['email'] or postData['email'] != re.match(r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)', postData['email']):
 			status['valid']=False
 			status['errors'].append('Email is invalid')
 		if not postData['password'] or len(postData['password'])<6:
@@ -23,32 +25,36 @@ class UserManager(models.Manager):
 			status['errors'].append('Get out og here Putin go hack something else. MAKE YOUR PASSWORDS MATCH AGAIN')
 		if status['valid'] is False:
 			return status
-		user = User.objects.filter(alias=postData['alias'])
-
-		if user:
-			status['valid']=False
-			status['errors'].append('Failed to register')
-
+		
+		user = User.objects.get(alias=postData['alias'])
 		if status['valid']:
-			try:
+			
 				user = User.objects.create(
 					name=postData['name'],
 					alias=postData['alias'],
-					email=postData['emial'],
+					email=postData['email'],
 					password=(bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt())))
 				user.save()
 				status['user'] = user
-			except IntegrityError as e:
-				status['valid'] = False
-				if 'UNIQUE constraint' in e.message:
-					status['errors'].append('email is already registered')
-				else:
-					status['errors'].append(e.messages)
-			return results
+		else:
+			status['errors'].append('registration has failed')
+		return status
 			
-
-
-
+	def loginUser(self, postData):
+		status={'valid': True, 'errors': [], 'user': None}
+		try:
+			user = User.objects.get(alias=postData['<alias></alias>'])
+			if user.password == bcrypt.hashpw(postData['password'].encode(), user.password.encode()):
+				pass
+			else:
+				raise Exception()
+		except Exception as e:
+			status['valid']=False
+			status['errors'].append('Login failed try again')
+		
+		if status['valid']:
+			status['user']=user
+		return status
 
 class User(models.Model):
 	name=models.CharField(max_length=255)
@@ -59,3 +65,7 @@ class User(models.Model):
 	updated_at = models.DateTimeField(auto_now=True)
 
 	objects = UserManager()
+
+	def __str__(self):
+		return str(self.id) + ":" + self.name + "\\" + self.alias + " - " + self.email + " - " + "Created: " + str(self.created_at)
+
