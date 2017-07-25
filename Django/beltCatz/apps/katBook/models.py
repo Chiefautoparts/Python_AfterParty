@@ -32,7 +32,7 @@ class CatManager(models.Manager):
 		try:
 			cat = Cat.objects.get(postData['cat_id'])
 			user = User.objects.get(id=user_id)
-			like = cat.likedcats.add(user)
+			like = cat.likedcats.add(cat)
 			cat.save()
 		except:
 			results['errors'].append('Feline Error: Cat has not been Liked')

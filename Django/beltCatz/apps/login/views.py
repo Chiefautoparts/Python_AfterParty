@@ -18,10 +18,10 @@ def register(request):
 	if not results['status']:
 		for error in results['errors']:
 			messages.error(request, error)
-			#return redirect('login:index')
+			
 	else:
 		messages.success(request, 'User created, please log in.')
-	return redirect('login:login')
+	return redirect('login:index')
 
 def login(request):
 	results = User.objects.loginVal(request.POST)
