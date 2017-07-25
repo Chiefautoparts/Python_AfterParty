@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+    {% load static %}
+        <meta charset="utf-8">
+        <title>Untitled</title>
+        <link rel="stylesheet" href="{% static 'katBook/css/main.css' %}">
+    </head>
+    <body>
+     {% if messages %}
+      	<ul class="messages">
+      		{%  for message in messages %}
+      		<li>{{ message }}</li>
+      		{% endfor %}
+      	</ul> 
+      {% endif %}
+      <a href="{% url 'katBook:userPage' %}">Home</a>
+      <a href="{% url 'katBook:addCat' %}">addCat</a>
+      <a href="{% url 'login:logout' %}">Logout</a>
+      <h1 >{{user.first_name}}'s Cats</h1>
+      {% for cat in cats %}
+      <div>
+      	<h1 >{{cat.name}}</h1>
+      		Owned by: {{cat.user_id}}
+      	<div>
+      		{{cat.age}} <br>
+      		{{cat.likes.all.count}} like this cat
+      		{% if cat.user_id != user %}
+      			<form  action="{% url 'katBook:likeCat' %}" method="POST">
+      				{% csrf_token %}
+      				<button type="submit" name="submit" value="submit">Like!</button>
+      				<input type="hidden" name="cat_id" value="{{cat.id}}">
+      			</form>
+      			{% endif %}
+      	</div>
+      	{% endfor %}
+      </div>
+    </body>
+</html>

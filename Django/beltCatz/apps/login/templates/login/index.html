@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+    {% load static %}
+        <meta charset="utf-8">
+        <title>Cat Book</title>
+        <link rel="stylesheet" href="{% static 'login/css/index.css' %}">
+    </head>
+    <body>
+      <div id='wrap'>
+      <h1>CatBook!!</h1>
+      <h2>The Only Social Media site Specifically for Cats</h2>
+      {% if messages %}
+      	{% for message in messages %}
+      	<p>{{ message }}</p>
+		    {%endfor%}      	
+      {% endif %}
+      <h2>Register Here</h2>
+      <form action="{% url 'login:register' %}" method="post">
+      {% csrf_token %}
+       	<input type="text" name="first_name" placeholder="Enter First Namer" /><br><br>
+       	<input type="text" name="last_name" placeholder="Enter Last Name" /><br><br>
+       	<input type="text" name="email" placeholder="Enter Email" /><br><br>
+       	<input type="password" name="password" placeholder="Enter Password" /><br><br>
+       	<input type="password" name="passvalid" placeholder="Confirm Password" /><br>
+       	<button type="submit" name="submit" value="register">Register</button>
+       </form> 
+       <h2>Login Here</h2>
+       <form action="{% url 'login:login' %}" method="post">
+       {% csrf_token %}
+       	<input type="text" name="email" value="" placeholder="Enter your email"/><br><br>
+       	<input type="password" name="password" value="" placeholder="Enter your Password"/><br>
+       	<button type="submit" name="submit" value="login">Login</button>
+       </form>
+       </div>
+    </body>
+</html>
