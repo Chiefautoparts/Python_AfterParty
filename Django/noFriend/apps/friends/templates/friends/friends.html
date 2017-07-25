@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Untitled</title>
+    </head>
+    <body>
+      <h1>You have no friends. Time to make some friends in the "Safest*" online resource for friends</h1> 
+       
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message|safe}}</p>
+            {% endfor %}
+        {% endif %}
+        <div>
+            <a href="{% url 'friend:add_friend' %}">Add Friend</a>
+            <a href="{% url 'login:logout' %}">Logout</a>
+        </div>
+        {% for user in friendship_list %}
+        	<p>{{user.first_name}}</p>
+        {% endfor %}
+        
+    
+    </body>
+</html>
