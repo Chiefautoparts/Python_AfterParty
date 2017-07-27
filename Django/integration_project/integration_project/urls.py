@@ -1,4 +1,4 @@
-"""PacosTacos URL Configuration
+"""integration_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -16,9 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from apps.TacoLogo.models import User as 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^PacosTacos/', include('apps.TacoLogo.urls')),
+    url(r'timeDisplay/', include('apps.timeDisplay.urls')),
+    url(r'ninjaGold/', include('apps.ninjaGold.urls')),
+    url(r'survey_form/', include('apps.survey_form.urls')),
+
 ]
