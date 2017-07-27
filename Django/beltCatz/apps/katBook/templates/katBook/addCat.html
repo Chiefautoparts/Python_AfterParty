@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Add Cats</title>
+    </head>
+    <body>
+      {% if messages %}
+      	<ul class="messages">
+      		{%  for message in messages %}
+      		<li>{{ message }}</li>
+      		{% endfor %}
+      	</ul> 
+      {% endif %}
+      <form action="{% url 'katBook:addCat' %}" method="post">
+      	{% csrf_token %}
+      	<input type="text" name="name" placeholder="Enter cats name" autofocus/><br>
+      	<input type="text" name="age" placeholder="Cats age"/>
+      	<input type="hidden" name="user_id" value="{{user.id}}">
+      	<button type="submit" name="submit" value="submit">ADD CAT</button>
+      </form>
+    </body>
+</html>
